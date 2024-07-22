@@ -1,0 +1,11 @@
+D:\repos\UserRecord\UserRecord.Entity\bin\Debug\net8.0\UserRecord.Entity.deps.json
+D:\repos\UserRecord\UserRecord.Entity\bin\Debug\net8.0\UserRecord.Entity.dll
+D:\repos\UserRecord\UserRecord.Entity\bin\Debug\net8.0\UserRecord.Entity.pdb
+D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\UserRecord.Entity.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\UserRecord.Entity.AssemblyInfoInputs.cache
+D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\UserRecord.Entity.AssemblyInfo.cs
+D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\UserRecord.Entity.csproj.CoreCompileInputs.cache
+D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\UserRecord.Entity.dll
+D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\refint\UserRecord.Entity.dll
+D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\UserRecord.Entity.pdb
+D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\ref\UserRecord.Entity.dll
