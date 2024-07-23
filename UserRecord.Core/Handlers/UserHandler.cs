@@ -7,39 +7,34 @@ using UserRecord.Core.Json;
 
 namespace UserRecord.Core.Handlers;
 
-internal class UserHandler : ICommandHandler, IQueryHandler
+public class UserHandler : ICommandHandler, IQueryHandler
 {
     private static string _file = null;
 
-    private static IList<User> _users = null;
+    private static List<User> _users = [];
 
     public UserHandler(string file)
     {
         _file = file;
-    }
-
-    public void Create()
-    {
-        using var jsonManager = new JsonManager();
-        _users = jsonManager.ReadJson(_file);
+        _users = _users.DeserializeUsers(_file);
     }
     
+    public List<User> Users => _users;
+
+    public int UsersCount => _users.Count;
+
     public void Add(UserDto userDto)
     {
-        if (_users == null)
-            return;
-
-        int lastId = _users.Last().Id;
-
         var user = new User
         {
-            Id = lastId++,
+            Id = UsersCount + 1,
             FirstName = userDto.FirstName,
             LastName = userDto.LastName,
             SalaryPerHour = userDto.SalaryPerHour
         };
 
         _users.Add(user);
+        _users.SerializeUsers(_file);
     }
     
     public void Update(UserDto userDto)
@@ -56,21 +51,35 @@ internal class UserHandler : ICommandHandler, IQueryHandler
                 return u;
             })
             .FirstOrDefault();
+        
+        _users.SerializeUsers(_file);
     }
 
-    public void Delete(int Id)
+    public void Delete(int id)
     {
         if (_users == null)
             return;
-
-        _users.FirstOrDefault(u => u.Id == Id);
+        
+        int index = id - 1;
+        _users.RemoveAt(id - 1);
+        _users.SerializeUsers(_file);
     }
 
-    public IEnumerable<User> GetAll() =>
-        _users;
+    public IEnumerable<User> GetAll()
+    {
+        using (var jsonManager = new JsonManager())
+            _users = jsonManager.ReadJson(_file).ToList();
 
-    public User GetById(int Id) => 
-        _users.FirstOrDefault(u => u.Id == Id);
+        return _users;
+    }
+
+    public User GetById(int Id)
+    {
+        using (var jsonManager = new JsonManager())
+            _users = jsonManager.ReadJson(_file).ToList();
+
+        return _users.FirstOrDefault(u => u.Id == Id);
+    }
 
     public void Dispose()
     {

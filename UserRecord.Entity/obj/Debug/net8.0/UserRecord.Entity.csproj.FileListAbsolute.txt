@@ -5,6 +5,7 @@ D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\UserRecord.Entity.Generat
 D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\UserRecord.Entity.AssemblyInfoInputs.cache
 D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\UserRecord.Entity.AssemblyInfo.cs
 D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\UserRecord.Entity.csproj.CoreCompileInputs.cache
+D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\UserRecord.Entity.sourcelink.json
 D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\UserRecord.Entity.dll
 D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\refint\UserRecord.Entity.dll
 D:\repos\UserRecord\UserRecord.Entity\obj\Debug\net8.0\UserRecord.Entity.pdb
