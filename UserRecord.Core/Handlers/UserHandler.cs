@@ -38,21 +38,27 @@ public class UserHandler : ICommandHandler, IQueryHandler
     }
     
     public void Update(UserDto userDto)
-    {        
+    {
         if (_users == null)
             return;
 
         _users.Where(u => u.Id == userDto.Id)?
-            .Select(u => 
-            {
-                u.FirstName = userDto.FirstName;
-                u.LastName = userDto.LastName;
-                u.SalaryPerHour = userDto.SalaryPerHour;
-                return u;
-            })
+            .Select(u => UpdateUserData(ref u, userDto))
             .FirstOrDefault();
         
         _users.SerializeUsers(_file);
+    }
+
+    private User UpdateUserData(ref User user, UserDto newUserData)
+    {
+        if (!String.IsNullOrEmpty(newUserData.FirstName))
+            user.FirstName = newUserData.FirstName;
+        if (!String.IsNullOrEmpty(newUserData.LastName))
+            user.LastName = newUserData.LastName;
+        
+        user.SalaryPerHour = newUserData.SalaryPerHour;
+
+        return user;
     }
 
     public void Delete(int id)
@@ -67,16 +73,12 @@ public class UserHandler : ICommandHandler, IQueryHandler
 
     public IEnumerable<User> GetAll()
     {
-        using (var jsonManager = new JsonManager())
-            _users = jsonManager.ReadJson(_file).ToList();
-
-        return _users;
+        return _users.DeserializeUsers(_file);
     }
 
     public User GetById(int Id)
     {
-        using (var jsonManager = new JsonManager())
-            _users = jsonManager.ReadJson(_file).ToList();
+       _users = _users.DeserializeUsers(_file);
 
         return _users.FirstOrDefault(u => u.Id == Id);
     }

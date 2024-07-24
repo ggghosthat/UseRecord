@@ -8,19 +8,9 @@ internal class Program
 {
     public static async Task Main(string[] args)
     {
-        
-        var uh = new UserHandler("./users.json");
-        uh.Delete(3);
+        string file = args[0];
+        string cmd = args[1];
+        string[] values = args[2..];
     }
 }
 
-internal class ArgumentParser
-{
-    private static string[] commands = ["add", "update", "delete", "get", "getall"];
-    private static string[] properties = ["Firstname", "LastName", "SalaryPerHour"];
-
-    public static void ParseCommad(string inputCommand)
-    {
-
-    }
-}
