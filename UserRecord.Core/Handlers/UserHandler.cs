@@ -37,28 +37,26 @@ public class UserHandler : ICommandHandler, IQueryHandler
         _users.SerializeUsers(_file);
     }
     
-    public void Update(UserDto userDto)
+    public void Update(UserDto newUserData)
     {
         if (_users == null)
             return;
 
-        _users.Where(u => u.Id == userDto.Id)?
-            .Select(u => UpdateUserData(ref u, userDto))
-            .FirstOrDefault();
-        
-        _users.SerializeUsers(_file);
-    }
+        if (!_users.Exists(u => u.Id == newUserData.Id))
+            throw new Exception($"User record with  <{newUserData.Id}> does not exists");
 
-    private User UpdateUserData(ref User user, UserDto newUserData)
-    {
+        var user = _users.First(u => u.Id == newUserData.Id);
+
         if (!String.IsNullOrEmpty(newUserData.FirstName))
             user.FirstName = newUserData.FirstName;
+
         if (!String.IsNullOrEmpty(newUserData.LastName))
             user.LastName = newUserData.LastName;
         
-        user.SalaryPerHour = newUserData.SalaryPerHour;
+        if (newUserData.SalaryPerHour != default)
+            user.SalaryPerHour = newUserData.SalaryPerHour;
 
-        return user;
+        _users.SerializeUsers(_file);
     }
 
     public void Delete(int id)
@@ -66,8 +64,12 @@ public class UserHandler : ICommandHandler, IQueryHandler
         if (_users == null)
             return;
         
-        int index = id - 1;
-        _users.RemoveAt(id - 1);
+        if (!_users.Exists(u => u.Id == id))
+            throw new Exception($"User record with  <{id}> does not exists");
+
+        var user = _users.First(u => u.Id == id);
+
+        _users.Remove(user);
         _users.SerializeUsers(_file);
     }
 
@@ -76,11 +78,14 @@ public class UserHandler : ICommandHandler, IQueryHandler
         return _users.DeserializeUsers(_file);
     }
 
-    public User GetById(int Id)
+    public User GetById(int id)
     {
        _users = _users.DeserializeUsers(_file);
 
-        return _users.FirstOrDefault(u => u.Id == Id);
+        if (!_users.Exists(u => u.Id == id))
+            throw new Exception($"User record with  <{id}> does not exists");
+        
+        return _users.First(u => u.Id == id);
     }
 
     public void Dispose()

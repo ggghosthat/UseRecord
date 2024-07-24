@@ -9,4 +9,9 @@ public class User
     public string LastName { get; set; }
     
     public decimal SalaryPerHour { get; set; }
+
+    public override string ToString()
+    {
+        return $"Id = {Id}, FirstName = {FirstName}, LastName = {LastName}, SalaryPerHour = {SalaryPerHour}";
+    }
 };

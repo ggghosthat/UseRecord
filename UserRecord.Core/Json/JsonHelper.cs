@@ -13,7 +13,15 @@ internal static class JsonHelper
         try
         {
             using (FileStream fileStream = File.Open(file, FileMode.Open))
-                JsonSerializer.Serialize(fileStream, users);
+            using (StreamWriter writer = new StreamWriter(fileStream))
+            {
+                writer.Write(String.Empty, 0, fileStream.Length-1);
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true
+                };
+                JsonSerializer.Serialize(fileStream, users, options);
+            }
         }
         catch (Exception ex)
         {
