@@ -9,18 +9,22 @@ internal class ArgumentParser
         ["-add"] = new Mask(new string[] {"FirstName", "LastName", "SalaryPerHour"}),
         ["-update"] = new Mask(new string[] {"Id", "FirstName", "LastName", "SalaryPerHour"}),
         ["-delete"] = new Mask(new string[] {"Id"}),
-        ["-get"] = new Mask(new string[] {"Id"}),
         ["-delete"] = new Mask(new string[] {"Id"}),
-        {}
+        ["-get"] = new Mask(new string[] {"Id"}),
+        ["-getall"] = null
     };
 
-    private string[] GetParameters(string cmd, string[] values)
+    public static string[] GetParameters(string cmd, string[] values)
     {
         if (!_masks.ContainsKey(cmd))
             throw new Exception($"Not supported option -> {cmd}");
 
         var mask = _masks[cmd];
-        return mask.ExtractParameters(values);
+
+        if (mask != null)
+            return mask.ExtractParameters(values);
+        else
+            return null;
     }
 }
 
