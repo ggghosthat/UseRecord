@@ -12,7 +12,7 @@ internal static class JsonHelper
     {
         try
         {
-            using (FileStream fileStream = File.Open(file, FileMode.Open))
+            using (FileStream fileStream = File.Open(file, FileMode.OpenOrCreate))
             using (StreamWriter writer = new StreamWriter(fileStream))
             {
                 writer.Write(String.Empty, 0, fileStream.Length-1);

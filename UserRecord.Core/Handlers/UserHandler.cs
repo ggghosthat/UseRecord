@@ -16,7 +16,7 @@ public class UserHandler : ICommandHandler, IQueryHandler
     public UserHandler(string file)
     {
         _file = file;
-        _users = _users.DeserializeUsers(_file);
+        TryOpenFile();
     }
     
     public List<User> Users => _users;
@@ -91,5 +91,11 @@ public class UserHandler : ICommandHandler, IQueryHandler
     public void Dispose()
     {
         _users = null;
+    }
+
+    private void TryOpenFile()
+    {
+        if (File.Exists(_file))
+            _users = _users.DeserializeUsers(_file);
     }
 }
