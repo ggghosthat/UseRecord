@@ -3,7 +3,7 @@ using UserRecord.Entity.Models;
 
 namespace UserRecord.Contracts.Handlers;
 
-public interface ICommandHandler : IHandler
+public interface ICommandHandler
 {
     public void Add(UserDto user);
     public void Update(UserDto UserDto);
