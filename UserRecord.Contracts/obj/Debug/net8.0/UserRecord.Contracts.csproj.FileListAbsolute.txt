@@ -1,0 +1,16 @@
+D:\repos\UserRecord\UserRecord.Contracts\bin\Debug\net8.0\UserRecord.Contracts.deps.json
+D:\repos\UserRecord\UserRecord.Contracts\bin\Debug\net8.0\UserRecord.Contracts.dll
+D:\repos\UserRecord\UserRecord.Contracts\bin\Debug\net8.0\UserRecord.Contracts.pdb
+D:\repos\UserRecord\UserRecord.Contracts\bin\Debug\net8.0\UserRecord.Entity.dll
+D:\repos\UserRecord\UserRecord.Contracts\bin\Debug\net8.0\UserRecord.Entity.pdb
+D:\repos\UserRecord\UserRecord.Contracts\obj\Debug\net8.0\UserRecord.Contracts.csproj.AssemblyReference.cache
+D:\repos\UserRecord\UserRecord.Contracts\obj\Debug\net8.0\UserRecord.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\UserRecord\UserRecord.Contracts\obj\Debug\net8.0\UserRecord.Contracts.AssemblyInfoInputs.cache
+D:\repos\UserRecord\UserRecord.Contracts\obj\Debug\net8.0\UserRecord.Contracts.AssemblyInfo.cs
+D:\repos\UserRecord\UserRecord.Contracts\obj\Debug\net8.0\UserRecord.Contracts.csproj.CoreCompileInputs.cache
+D:\repos\UserRecord\UserRecord.Contracts\obj\Debug\net8.0\UserRecord.Contracts.sourcelink.json
+D:\repos\UserRecord\UserRecord.Contracts\obj\Debug\net8.0\UserReco.90AF46CE.Up2Date
+D:\repos\UserRecord\UserRecord.Contracts\obj\Debug\net8.0\UserRecord.Contracts.dll
+D:\repos\UserRecord\UserRecord.Contracts\obj\Debug\net8.0\refint\UserRecord.Contracts.dll
+D:\repos\UserRecord\UserRecord.Contracts\obj\Debug\net8.0\UserRecord.Contracts.pdb
+D:\repos\UserRecord\UserRecord.Contracts\obj\Debug\net8.0\ref\UserRecord.Contracts.dll
