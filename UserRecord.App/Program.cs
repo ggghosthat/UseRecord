@@ -11,32 +11,51 @@ internal class Program
 {
     private static UserHandler _userhandler;
 
+    private static string _file;
+    private static string _command;
+    private static string[] _values;
+
     public static async Task Main(string[] args)
     {
-        string file = args[0];
-        string command = args[1];
-        string[] values = args[2..];
-
-        CheckFile(file);
-        RouteCommand(command, values);
+        SpellArgs(args);
+        CheckFile();
+        RouteCommand();
     }
     
-    private static void CheckFile(string filePath)
+    private static void SpellArgs(string[] arguments)
     {
-        if (!File.Exists(filePath))
-            throw new Exception($"Could not find file -> {filePath}");
+        try
+        {
+            if (arguments[0] == "help")
+                PrintHelpMessage();
 
-        if (Path.GetExtension(filePath) != ".json")
-            throw new Exception($"The input file is not a JSON file");
+            _file = arguments[0];
+            _command = arguments[1];
+            _values = arguments[2..];
 
-        _userhandler = new(filePath);
+        }
+        catch (System.Exception)
+        {
+            PrintHelpMessage();
+        }
     }
 
-    private static void RouteCommand(string command, string[] values)
+    private static void CheckFile()
     {
-        var parameters = ArgumentParser.GetParameters(command, values);
+        if (!File.Exists(_file))
+            throw new Exception($"Could not find file -> {_file}");
 
-        switch (command)
+        if (Path.GetExtension(_file) != ".json")
+            throw new Exception($"The input file is not a JSON file");
+
+        _userhandler = new(_file);
+    }
+
+    private static void RouteCommand()
+    {
+        var parameters = ArgumentParser.GetParameters(_command, _values);
+
+        switch (_command)
         {
             case "-add":
                 var addDto = parameters.MapAddUserDto();
@@ -61,7 +80,7 @@ internal class Program
                     Console.WriteLine(userItem);
                 break;
             default:
-                throw new Exception($"Not supported command -> {command}");
+                throw new Exception($"Not supported command -> {_command}");
 
         }
     }
@@ -72,6 +91,26 @@ internal class Program
             return id;
         else
             throw new Exception($"Could not parse input id -> {idParameter}");
+    }
+
+    private static void PrintHelpMessage()
+    {
+        string helpMessage = 
+        """
+        UserRecord is a console utility to keep record user data.
+
+        Arguments:
+          <FILE> - path to json file to store records
+
+        Options:
+            '-add FirstName:<FIRSTNAME> LastName:<LASTNAME> SalaryPerHour:<SALARY_PER_HOUR>' - add new user record
+            '-update Id:<ID> <PROPERTY_NAME>:<PROPERTY_VALUE>' - update user record with specified Id
+            '-delete Id:<ID>' - delete user with specified Id
+            '-get Id:<ID>' - print user record with specified Id
+            '-getall' - print all user records
+        """;
+
+        Console.WriteLine(helpMessage);
     }
 }
 
